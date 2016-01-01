@@ -90,13 +90,14 @@ class Sink(object):
         return file
 
     def cwd(self):
-        self.pwd()
+        return self.pwd()
 
     def pwd(self):
         parser = argparse.ArgumentParser(
             description="Display the current working directory")
 
         print(coloured(self.curdir.get_dir(), 'white'))
+        return self.curdir.get_dir()
 
     def ls(self):
         parser = argparse.ArgumentParser(
@@ -126,6 +127,10 @@ class Sink(object):
         #        self.dropbox.files_list_folder(self.curdir).entries)))
 
     def cd(self):
+        """Changes the current directory if it is valid
+
+        returns the path to the current directory
+        """
         parser = argparse.ArgumentParser(description="Change the directory")
         parser.add_argument("dir", nargs="?", default="/")
         args = parser.parse_args(self.args[1:])
@@ -138,6 +143,7 @@ class Sink(object):
         except dropbox.exceptions.ApiError as e:
             self.curdir = util.directory(old_dir)
             print_error("sink cd: no such directory")
+        return self.curdir.get_dir()
 
     def repl(self):
         PROMPT = self.dropbox.users_get_current_account().email + " > "
@@ -198,7 +204,10 @@ class Sink(object):
         self.execute()
 
     def execute(self):
-        """Executes an external shell command"""
+        """Executes an external shell command
+
+        returns whether or not the shell command executed successfully
+        """
         cwd = sh.get_cwd() + "/"
         parser = argparse.ArgumentParser(
             description="Executes an external shell command")
@@ -206,8 +215,10 @@ class Sink(object):
 
         try:
             sh.sh(self.args[1:])
+            return True
         except:
             print(coloured("shell command not found", "red"))
+            return False
 
     @contextlib.contextmanager
     def stopwatch(self, message):
