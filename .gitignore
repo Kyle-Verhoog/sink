@@ -4,4 +4,3 @@ oauth.py
 *.pyc
 *.swp
 *.swo
-sink/sink
