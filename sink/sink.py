@@ -118,9 +118,10 @@ class Sink(object):
 
     def generate_completer(self):
         """Generates the autocompletion listing"""
-        return word_completer(list(map(lambda x: x.name,
-                                       self.dropbox.files_list_folder(
-                                           self.curdir.get_dir()).entries)))
+
+        return word_completer(list(map(
+            lambda x: x.name, self.dropbox.files_list_folder(
+                self.curdir.get_dir()).entries)) + dir(self))
         # filter by directory
         #return word_completer(map(lambda x: x.name,
         #    filter(lambda x: not util.is_file(x),
@@ -186,8 +187,9 @@ class Sink(object):
                 if not args.dest == cwd:
                     self.dropbox.files_download_to_file(
                         destfile.get_full_path(), dbfile.get_full_path())
-                    print_succ("file (%s) saved locally to %s " % (
-                        dbfile.get_full_path(), destfile.get_full_path()))
+                    print_succ("file (%s) saved locally to %s " %
+                               (dbfile.get_full_path(),
+                                destfile.get_full_path()))
                 else:  # default to pwd of where sink was run
                     self.dropbox.files_download_to_file(
                         destfile.get_filename(), dbfile.get_full_path())
@@ -278,7 +280,6 @@ class Sink(object):
                            short_url=True).url))
         except dropbox.exceptions.ApiError as e:
             print_error("sink share: could not share file")
-
 
     def clear(self):
         """Clears the console"""
