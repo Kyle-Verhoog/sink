@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Kyle-Verhoog/sink.svg)](https://travis-ci.org/kyle-verhoog/sink) [![Gitter](https://badges.gitter.im/Kyle-Verhoog/sink.svg)](https://gitter.im/Kyle-Verhoog/sink?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Build Status](https://travis-ci.org/Kyle-Verhoog/sink.svg)](https://travis-ci.org/kyle-verhoog/sink) [![Made with Spacemacs](https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg)](http://github.com/syl20bnr/spacemacs) [![Gitter](https://badges.gitter.im/Kyle-Verhoog/sink.svg)](https://gitter.im/Kyle-Verhoog/sink?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # sink
 sink things
